@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.niconator.fov360.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [],
+  "client": [
+    "OptionsFovRangeMixin",
+    "SodiumViewportCullingMarginMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
