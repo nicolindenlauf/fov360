@@ -1,29 +1,30 @@
 # eclipse
-bin
+bin/
 *.launch
-.settings
-.metadata
+.settings/
+.metadata/
 .classpath
 .project
 
 # vscode
-.vscode
+.vscode/
 
 # idea
-out
+out/
 *.ipr
 *.iws
 *.iml
-.idea
+.idea/
 
 # gradle
-build
-.gradle
+build/
+.gradle/
 
 # other
-eclipse
-run
-runs
-run-data
-
-repo
+eclipse/
+run/
+runs/
+run-data/
+repo/
+*.log
+hs_err_pid*
