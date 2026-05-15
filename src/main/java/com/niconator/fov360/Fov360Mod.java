@@ -18,6 +18,8 @@ public class Fov360Mod {
         modEventBus.addListener(Fov360Config::onLoad);
         modEventBus.addListener(Fov360Config::onReload);
 
+        DistantHorizonsCompat.registerIfLoaded();
+
         LOGGER.info("{} initialized.", MODID);
     }
 

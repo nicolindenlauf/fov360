@@ -12,6 +12,8 @@ public final class Fov360Config {
     private static final int DEFAULT_CULLING_MARGIN_BLOCKS = 40;
     private static final int MAX_CULLING_MARGIN_BLOCKS = 256;
 
+    private static final int DEFAULT_DISTANT_HORIZONS_CULLING_MARGIN_BLOCKS = DEFAULT_CULLING_MARGIN_BLOCKS * 2;
+
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
     static final ModConfigSpec.IntValue MAX_FOV = BUILDER
@@ -27,10 +29,21 @@ public final class Fov360Config {
             MAX_CULLING_MARGIN_BLOCKS
         );
 
+    static final ModConfigSpec.IntValue DISTANT_HORIZONS_CULLING_MARGIN_BLOCKS = BUILDER
+        .comment("Extra Distant Horizons LOD frustum culling margin in blocks.", "Range: 0..256")
+        .defineInRange(
+            "distantHorizonsCullingMarginBlocks",
+            DEFAULT_DISTANT_HORIZONS_CULLING_MARGIN_BLOCKS,
+            MIN_CULLING_MARGIN_BLOCKS,
+            MAX_CULLING_MARGIN_BLOCKS
+        );
+
     public static final ModConfigSpec SPEC = BUILDER.build();
 
     private static volatile int cachedMaxFov = DEFAULT_MAX_FOV;
     private static volatile int cachedCullingMarginBlocks = DEFAULT_CULLING_MARGIN_BLOCKS;
+    private static volatile int cachedDistantHorizonsCullingMarginBlocks =
+        DEFAULT_DISTANT_HORIZONS_CULLING_MARGIN_BLOCKS;
 
     private Fov360Config() {
     }
@@ -50,11 +63,13 @@ public final class Fov360Config {
 
         cachedMaxFov = MAX_FOV.get();
         cachedCullingMarginBlocks = CULLING_MARGIN_BLOCKS.get();
+        cachedDistantHorizonsCullingMarginBlocks = DISTANT_HORIZONS_CULLING_MARGIN_BLOCKS.get();
 
         Fov360Mod.LOGGER.info(
-            "Config updated: maxFov={}, cullingMarginBlocks={}",
+            "Config updated: maxFov={}, cullingMarginBlocks={}, distantHorizonsCullingMarginBlocks={}",
             cachedMaxFov,
-            cachedCullingMarginBlocks
+            cachedCullingMarginBlocks,
+            cachedDistantHorizonsCullingMarginBlocks
         );
 
         Fov360Mod.applyClientConfigNow();
@@ -66,6 +81,10 @@ public final class Fov360Config {
 
     public static double getCullingMarginBlocks() {
         return cachedCullingMarginBlocks;
+    }
+
+    public static double getDistantHorizonsCullingMarginBlocks() {
+        return cachedDistantHorizonsCullingMarginBlocks;
     }
 
     public static double getFovOptionScale() {

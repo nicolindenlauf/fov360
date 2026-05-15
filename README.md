@@ -7,6 +7,7 @@ FOV360 is a lightweight client-side NeoForge mod for Minecraft 1.21.1.
 - Keeps option serialization stable for extended FOV values.
 - Adds configurable frustum culling margin to reduce visual pop-in at high FOV or with shader effects.
 - Includes a compatibility mixin for Sodium's viewport culling path.
+- Applies the same culling margin to Distant Horizons LOD terrain when Distant Horizons is present.
 
 ## Configuration
 Config file: `config/fov360.properties`
@@ -14,12 +15,14 @@ Config file: `config/fov360.properties`
 Available options:
 - `maxFov` (int, default `360`, clamped to `110..360`)
 - `cullingMarginBlocks` (int, default `40`, clamped to `0..256`)
+- `distantHorizonsCullingMarginBlocks` (int, default `80`, clamped to `0..256`)
 
 ## Compatibility
 - Minecraft: `1.21.1`
 - Loader: NeoForge `21.1.228+`
 - Java: `21`
 - Required companion mod: `Sodium` (client-side dependency)
+- Optional companion mod: `Distant Horizons`
 
 ## Compatibility And Quality Checklist (Reusable)
 Use this checklist when standardizing other projects:
